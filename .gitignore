@@ -1,0 +1,10 @@
+/media
+/accounts/migrations
+/blog/migrations
+blog/__pycache__
+/magasin/migrations
+magasin/__pycache__
+mysite/__pycache__
+mysite/settings.py
+oldStyle.txt
+db.sqlite3

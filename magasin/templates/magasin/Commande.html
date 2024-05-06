@@ -1,0 +1,75 @@
+{% extends 'magasin/base.html' %}
+
+{% block content %}
+<head>
+    <style>
+        .fournisseurs-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, 300px);
+            justify-content: space-around;
+            grid-gap: 20px;
+        }
+
+        .fournisseur-card {
+            width: 300px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .fournisseur-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-wrapper {
+            border-radius: 10px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            width: 400px;
+        }
+
+        .form-wrapper form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-wrapper button {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="form-wrapper">
+            <h1 style="font-weight: bold; color: green;">Nouvelle Commande</h1>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary">Enregistrer</button>
+            </form>
+        </div>
+    </div>
+    <h2>Liste des commandes</h2>
+    <div class="fournisseurs-container">
+        {% for commande in commandes %}
+        <div class="fournisseur-card">
+            <p>Date: {{ commande.dateCde }}</p>
+            <p>Total: {{ commande.totalCde }}</p>
+            <p>Description: {{ commande.description }}</p>
+            <p>Total Price: {{ commande.total }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+{% endblock %}

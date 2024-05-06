@@ -1,0 +1,62 @@
+{% extends 'magasin/base.html' %}
+{% block title %} Catalogue de produits {% endblock %}
+{% block content %}
+<!-- body -->
+<style>
+  /* CSS styles for product container */
+  .product-container {
+ 
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 300px);
+    justify-content: space-around;
+    grid-gap: 20px;
+  
+    }
+   
+
+  /* CSS styles for individual product */
+  .product {
+    width: 17rem;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    border: 1px solid #ccc; /* Grey border */
+    padding: 5px;
+    
+  }
+
+  /* Hover effect */
+  .product:hover {
+    transform: scale(1.01);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Ensure images fill their container */
+  .product img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+</style>
+
+<div class="container-fluid mt-3">
+  <div class="row">
+    <!-- all products -->
+    <div id="products" class="col-lg-9 mx-auto">
+      <div class="row mx-auto product-container">
+        <!-- Products is a key in the context dictionary rendered by the 'index' view -->
+        {% for product in products %}
+        <div class="product" id="{{ product.id }}">
+          <img src="/media/{{ product.Img }}" />
+          <div>
+            <p>{{ product.libellé }}</p>
+            <p><b>{{ product.description }}</b></p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

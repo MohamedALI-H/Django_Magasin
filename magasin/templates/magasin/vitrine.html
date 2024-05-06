@@ -1,0 +1,66 @@
+{% extends 'magasin/base.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class="container modern-container">
+    <div class="scroll-container">
+        {% if list %}
+        <table>
+            <tr>
+                {% for article in list %}
+                <td class="product-card">
+                    <img src='/media/{{ article.Img }}'
+                        class="product-image"
+                        alt="{{ article.libellé }}">
+                    <figcaption class="figure-caption">
+                        {{ article.libellé }}
+                    </figcaption>
+                    <p class="price"> {{ article.prix }} DT. </p>
+                </td>
+                {% endfor %}
+            </tr>
+        </table>
+        {% else %}
+        <p>pas de produit</p>
+        {% endif %}
+    </div>
+</div>
+
+<style>
+    .modern-container {
+        border-radius: 15px;
+        overflow: hidden;
+        backdrop-filter: blur(10px);
+    }
+    
+    .scroll-container {
+        overflow: scroll;
+        border: 1px solid #000;
+    }
+    
+    .product-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .product-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+    
+    .product-image {
+        border-radius: 10px;
+        height: 200px;
+        width: 200px;
+    }
+    .price {
+        font-weight: bold;
+    }
+    table {
+    border-collapse: separate;
+    border-spacing: 10px; /* Adjust the value as needed */
+}
+
+    
+</style>
+{% endblock %}

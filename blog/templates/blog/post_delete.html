@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete Post</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0-alpha1/css/bootstrap.min.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to bottom right, #6c63ff, #ff6b6b);
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+        }
+
+        .container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+            padding: 20px;
+            width: 50%;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 0;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        button {
+            background: linear-gradient(to bottom right, #6c63ff, #ff6b6b);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: linear-gradient(to bottom right, #ff6b6b, #6c63ff);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Are you sure you want to delete "{{ object.title }}"?</h1>
+        <form method="post" style="display: inline;">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+        <a href="{% url 'post_detail' object.slug %}" class="btn btn-secondary">Cancel</a>
+    </div>
+</body>
+</html>
